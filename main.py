@@ -7,6 +7,10 @@ import uvicorn
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI()
 
@@ -31,7 +35,7 @@ def send_email(name: str, email: str, message: str):
         smtp_server = "smtp.gmail.com"
         smtp_port = 587
         sender_email = "workwithfusioncode@gmail.com"
-        sender_password = "dcqo froc hfso mijv"  # Replace with Gmail App Password
+        sender_password = os.environ.get("SENDER_PASSWORD")
         
         # Create message
         msg = MIMEMultipart()
